@@ -25,6 +25,7 @@
     9. AWS EC2 --deploying.(future scope)
 
 # Entity-Relation Diagram:
-[](https://gitlab.com/ajaygs1998/movie-ticket-booking-system/-/blob/main/ER-diagram.jpg)
+
+![alt text](https://gitlab.com/ajaygs1998/movie-ticket-booking-system/-/blob/main/ER-diagram.jpg?raw=true)
 
 
