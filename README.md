@@ -26,6 +26,6 @@
 
 # Entity-Relation Diagram:
 
-![alt text](https://gitlab.com/ajaygs1998/movie-ticket-booking-system/-/blob/main/ER-diagram.jpg?raw=true)
+`https://gitlab.com/ajaygs1998/movie-ticket-booking-system/-/blob/main/ER-diagram.jpg`
 
 
