@@ -45,12 +45,11 @@ public class Booking {
 	private BookingStatus bookingStatus;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-//	Cascade type need to check
+
 	@JoinColumn(name = "user_id")
 	private User user;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-//	Cascade type need to check
 	@JoinColumn(name = "show_id")
 	private ShowDetails showDetails;
 

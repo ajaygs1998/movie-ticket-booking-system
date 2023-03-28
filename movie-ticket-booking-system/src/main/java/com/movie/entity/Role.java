@@ -23,10 +23,6 @@ import lombok.Setter;
 @Table(name = "roles")
 public class Role {
 
-	public Role(String string) {
-		// TODO Auto-generated constructor stub
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

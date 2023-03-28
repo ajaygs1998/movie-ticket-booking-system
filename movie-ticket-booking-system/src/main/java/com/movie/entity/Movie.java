@@ -51,6 +51,6 @@ public class Movie {
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
-	private List<Rating> rating;
+	private List<Review> rating;
 
 }
