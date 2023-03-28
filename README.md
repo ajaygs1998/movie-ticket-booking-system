@@ -1,4 +1,4 @@
-# movie-ticket-booking-system
+[](url)# movie-ticket-booking-system
 
 
 
@@ -27,5 +27,6 @@
 # Entity-Relation Diagram:
 ![alt text](https://gitlab.com/ajaygs1998/movie-ticket-booking-system/-/blob/main/movie-ticket-booking-system/ER-diagram.png)
 
+[](https://gitlab.com/ajaygs1998/movie-ticket-booking-system/-/blob/main/movie-ticket-booking-system/ER-diagram.png)
 
 
