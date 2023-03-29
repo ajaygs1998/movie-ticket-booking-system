@@ -1,6 +1,6 @@
 package com.movie.entity;
 
-import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,29 +19,29 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "theatres")
+@Table(name = "theaters")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Theatre {
+public class Theater {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int theatreId;
+	private Long theaterId;
 
-	@Column(name = "theatre_name", nullable = false)
-	private String theatreName;
+	@Column(name = "theater_name", nullable = false)
+	private String theaterName;
 
-	@Column(name = "theatre_location", nullable = false)
-	private String theatreLocation;
+   @OneToOne(cascade = CascadeType.ALL, mappedBy = "theater")
+	private TheaterLocation theaterLocation;
 
 	@Column(name = "screen_count", nullable = false)
 	private int screenCount;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "theatre", cascade = CascadeType.ALL)
-	private List<Screen> screen;
+	@OneToMany(mappedBy = "theater", cascade = CascadeType.ALL)
+	private Set<Screen> screen;
 
 }

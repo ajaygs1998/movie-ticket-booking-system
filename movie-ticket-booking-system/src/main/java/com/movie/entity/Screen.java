@@ -34,15 +34,15 @@ public class Screen {
 	private String screenName;
 
 	@Column(name = "seats_capacity", nullable = false)
-	private int seatsCapacity;
+	private Long seatsCapacity;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "screen", cascade = CascadeType.ALL)
 	private List<ShowDetails> show;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "theatre_id")
-	private Theatre theatre;
+	@JoinColumn(name = "theater_id")
+	private Theater theater;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "screen", cascade = CascadeType.ALL)

@@ -25,10 +25,10 @@ public class Review {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int reviewId;
+	private Long reviewId;
 
 	@Column(name = "rating_value", nullable = false)
-	private Integer ratingValue;
+	private Float ratingValue;
 
 	@Column(name = "user_comment", nullable = false)
 	private String comment;
