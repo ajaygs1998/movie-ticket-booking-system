@@ -2,18 +2,26 @@ package com.movie.response;
 
 import java.util.Set;
 
+
 import com.movie.entity.Screen;
 import com.movie.entity.TheaterLocation;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class TheaterResponse {
 
-	private Long theatreId;
+	private Long theaterId;
 	
 	private String theaterName;
-	
+
 	private TheaterLocation theaterLocation;
 	
 	private int screenCount;

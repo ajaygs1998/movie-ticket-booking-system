@@ -15,6 +15,8 @@ public interface TheaterService {
 	
 	Set<TheaterResponse> searchNearByTheater(TheaterRequest theaterRequest);
 
+	TheaterResponse getTheaterByTheaterId(Long theaterId);
+
 	
 
 }
