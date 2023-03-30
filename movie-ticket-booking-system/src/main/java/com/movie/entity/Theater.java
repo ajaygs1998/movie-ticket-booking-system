@@ -10,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -34,9 +35,22 @@ public class Theater {
 	@Column(name = "theater_name", nullable = false)
 	private String theaterName;
 
-   @OneToOne(cascade = CascadeType.ALL, mappedBy = "theater")
-	private TheaterLocation theaterLocation;
+	@Column(name = "street", nullable = false)
+	private String street;
+	@Column(name = "city", nullable = false)
+	private String city;
+	@Column(name = "state", nullable = false)
+	private String state;
+	@Column(name = "zip", nullable = false)
+	private String zip;
 
+	@Column(name = "latitude", nullable = false)
+	private double latitude;
+	@Column(name = "longitude", nullable = false)// horizontal lines
+	private double longitude;
+	
+   
+ 
 	@Column(name = "screen_count", nullable = false)
 	private int screenCount;
 

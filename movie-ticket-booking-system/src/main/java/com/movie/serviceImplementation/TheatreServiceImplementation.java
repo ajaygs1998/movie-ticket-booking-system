@@ -26,6 +26,7 @@ public class TheatreServiceImplementation implements TheaterService {
 
 	@Override
 	public TheaterResponse createTheater(TheaterRequest theaterRequest) {
+		
 		Theater theater = modelMapper.map(theaterRequest, Theater.class);
 		Theater savedTheater = theaterRepository.save(theater);
 		return modelMapper.map(savedTheater, TheaterResponse.class);
@@ -51,6 +52,8 @@ public class TheatreServiceImplementation implements TheaterService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 
 }
