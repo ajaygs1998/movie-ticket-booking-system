@@ -8,5 +8,4 @@ import com.movie.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-
 }
