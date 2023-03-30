@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.movie.entity.Theater;
 import com.movie.request.TheaterRequest;
+import com.movie.response.NearByTheaterResponse;
 import com.movie.response.TheaterResponse;
 
 public interface TheaterService {
@@ -13,9 +14,14 @@ public interface TheaterService {
 
 	List<TheaterResponse> getTheaterByKeyword(String keyword);
 	
-	Set<TheaterResponse> searchNearByTheater(TheaterRequest theaterRequest);
+	
 
 	TheaterResponse getTheaterByTheaterId(Long theaterId);
+
+	
+
+	List<NearByTheaterResponse> getNearByTheater(Double latitude, Double longitude, Double radius
+			);
 
 	
 
