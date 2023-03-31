@@ -13,5 +13,5 @@ public class NearByTheaterResponse {
 	private String distanceFromUser;
 	private String TimeToReach;
 	private String customMessage;
-	private TheaterResponse theterResponse;
+	private TheaterResponse theaterResponse;
 }

@@ -17,7 +17,7 @@ import com.movie.response.TheaterResponse;
 import com.movie.service.TheaterService;
 
 @Service
-public class TheatreServiceImplementation implements TheaterService {
+public class TheaterServiceImplementation implements TheaterService {
 
 	@Autowired
 	private TheaterRepository theaterRepository;
@@ -38,13 +38,12 @@ public class TheatreServiceImplementation implements TheaterService {
 		List<TheaterResponse> theaterResponse = this.theaterRepository.findAll().stream()
 				.map(source -> this.modelMapper.map(source, TheaterResponse.class)).toList();
 		List<NearByTheaterResponse> nearByTheaterResponseList = new ArrayList<>();
-		//long startTime = System.nanoTime();
+		// long startTime = System.nanoTime();
 		for (TheaterResponse resposne : theaterResponse) {
 			double theaterDistanceFromUser = distance(latitude, longitude, resposne.getLatitude(),
 					resposne.getLongitude());
-			System.out.println("Distance from me:" + theaterDistanceFromUser);
+			NearByTheaterResponse nearByTheaterResponse = new NearByTheaterResponse();
 			if (theaterDistanceFromUser <= radius) {
-				NearByTheaterResponse nearByTheaterResponse = new NearByTheaterResponse();
 				nearByTheaterResponse.setCustomMessage(
 						"Future scope: 'On going movie(movie name from this theater)' just 'time(in mins ex. 7 mins.)' away from you");
 				StringBuilder dis = new StringBuilder(
@@ -55,14 +54,15 @@ public class TheatreServiceImplementation implements TheaterService {
 				 * using toString() method
 				 */
 				nearByTheaterResponse.setDistanceFromUser(dis.toString());
-				nearByTheaterResponse.setTheterResponse(resposne);
+				nearByTheaterResponse.setTheaterResponse(resposne);
 				nearByTheaterResponseList.add(nearByTheaterResponse);
 				System.out.println("Distances from me (in):" + theaterDistanceFromUser);
 			}
 
 		}
-		
-		//System.out.println("Execution time: "+(System.nanoTime() - startTime)+" nanoseconds");
+
+		// System.out.println("Execution time: "+(System.nanoTime() - startTime)+"
+		// nanoseconds");
 
 		return nearByTheaterResponseList;
 	}
