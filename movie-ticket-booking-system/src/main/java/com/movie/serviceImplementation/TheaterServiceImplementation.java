@@ -37,6 +37,7 @@ public class TheaterServiceImplementation implements TheaterService {
 
 		List<TheaterResponse> theaterResponse = this.theaterRepository.findAll().stream()
 				.map(source -> this.modelMapper.map(source, TheaterResponse.class)).toList();
+		
 		List<NearByTheaterResponse> nearByTheaterResponseList = new ArrayList<>();
 		// long startTime = System.nanoTime();
 		for (TheaterResponse resposne : theaterResponse) {
@@ -50,7 +51,8 @@ public class TheaterServiceImplementation implements TheaterService {
 						Double.toString(Math.round(theaterDistanceFromUser * 10.0) / 10.0));
 				dis.append(" km");
 				/*
-				 * String to StringBuilder using append() method ...and StringBuilder to String
+				 * String to StringBuilder using append() method 
+				 * ...and StringBuilder to String
 				 * using toString() method
 				 */
 				nearByTheaterResponse.setDistanceFromUser(dis.toString());
