@@ -2,12 +2,15 @@ package com.movie.serviceImplementation;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.movie.request.BookingRequest;
 import com.movie.response.BookingResponse;
 import com.movie.service.BookingService;
 
+import io.swagger.v3.oas.annotations.servers.Server;
 import jakarta.validation.Valid;
-
+@Service
 public class BookingServiceImplementation implements BookingService {
 
 	@Override

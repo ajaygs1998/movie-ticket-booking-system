@@ -16,6 +16,8 @@ import com.movie.response.NearByTheaterResponse;
 import com.movie.response.TheaterResponse;
 import com.movie.service.TheaterService;
 
+import jakarta.validation.Valid;
+
 @Service
 public class TheaterServiceImplementation implements TheaterService {
 
@@ -94,6 +96,24 @@ public class TheaterServiceImplementation implements TheaterService {
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 		double d = R * c; // Distance in km
 		return d;
+	}
+
+	@Override
+	public List<TheaterResponse> getAllTheatres() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TheaterResponse upateTheater(TheaterRequest theaterRequest, @Valid Long theaterId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteTheater(Long theaterId) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
