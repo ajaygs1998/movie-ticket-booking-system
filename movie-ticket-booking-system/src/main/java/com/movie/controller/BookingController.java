@@ -40,7 +40,7 @@ public class BookingController {
 		return new ResponseEntity<BookingResponse>(createBooking, HttpStatus.CREATED);
 	}
 
-	@PutMapping("/bookings/{bookingId}")
+	@PutMapping("/update/{bookingId}")
 	public ResponseEntity<BookingResponse> updateBooking(@Valid @PathVariable Long bookingId,
 			@RequestBody BookingRequest bookingRequest) {
 		BookingResponse updatedBooking = this.bookingService.upateBooking(bookingRequest, bookingId);
@@ -60,13 +60,13 @@ public class BookingController {
 
 	}
 
-	@GetMapping("/bookings/")
+	@GetMapping("/all/bookings/")
 	public ResponseEntity<List<BookingResponse>> getAllBookings() {
 		List<BookingResponse> bookings = this.bookingService.getAllBookings();
 		return new ResponseEntity<>(bookings, HttpStatus.OK);
 	}
 
-	@DeleteMapping("/bookings/{bookingId}")
+	@DeleteMapping("/delete/{bookingId}")
 	public ResponseEntity<ApiResponse> deleteBooking(@PathVariable Long bookingId) {
 		this.bookingService.deleteBooking(bookingId);
 		return new ResponseEntity<ApiResponse>(new ApiResponse("Booking Deleted Successfully", true), HttpStatus.OK);

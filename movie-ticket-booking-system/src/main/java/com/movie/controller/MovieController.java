@@ -24,14 +24,12 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/app/movie/")
-@Slf4j
 public class MovieController {
 
 	@Autowired
 	MovieService movieService;
 
 	@PostMapping("/movies/")
-
 	public ResponseEntity<MovieResponse> createMovie(@Valid @RequestBody MovieRequest MovieResponse) {
 		MovieResponse createMovie = this.movieService.createMovie(MovieResponse);
 		return new ResponseEntity<MovieResponse>(createMovie, HttpStatus.CREATED);
@@ -45,7 +43,6 @@ public class MovieController {
 	}
 
 	@GetMapping("/search/movies/{keyword}")
-
 	public ResponseEntity<?> getMovieByKeyword(@PathVariable String keyword) {
 		List<MovieResponse> serchedmovie = this.movieService.getMovieByKeyword(keyword);
 		return new ResponseEntity<>((!serchedmovie.isEmpty()) ? serchedmovie
@@ -66,7 +63,6 @@ public class MovieController {
 	}
 
 	@DeleteMapping("/movies/{movieId}")
-
 	public ResponseEntity<ApiResponse> deleteMovie(@PathVariable Long movieId) {
 		this.movieService.deleteMovie(movieId);
 		return new ResponseEntity<ApiResponse>(new ApiResponse("Movie Deleted Successfully", true), HttpStatus.OK);
