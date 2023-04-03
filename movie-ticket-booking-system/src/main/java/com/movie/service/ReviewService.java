@@ -7,21 +7,20 @@ import java.util.TreeSet;
 import com.movie.request.ReviewRequest;
 import com.movie.response.ReviewResponse;
 
+import jakarta.validation.Valid;
+
 public interface ReviewService {
+
+	ReviewResponse createReview(@Valid ReviewRequest reviewRequest, String emailId, Long movieId);
 	//user
-	ReviewResponse doRatingForMovie(ReviewRequest ReviewRequest, String userName, Long movieId);
 
-	//user
-	void deleteMyReviews(Long userId);
+	void deleteMyReviews(Long reviewId);
 
-	//for testing
-	List<ReviewResponse> getAllRatings();
- 
-	
-	//for testing 
-	ReviewResponse getRatingByRatingId(Integer ratingId);
+	ReviewResponse getReviewByReviewId(Long reviewId);
 
-	//with movies
-	List<ReviewResponse> getRatingByMovieId(Integer movieId);
+	List<ReviewResponse> getAllReviews();
+
+	List<ReviewResponse> getReviewsByMoviewId(Long movieId);
+
 
 }

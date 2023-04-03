@@ -1,7 +1,12 @@
 package com.movie.service;
 
+import com.movie.request.SeatRequest;
+import com.movie.response.SeatRespone;
+
 public interface SeatService {
 
 	
-	//private SeatRespone addNewSeatsForScreen(SeatRequest seatRequest);
+      SeatRespone addNewSeatsForScreen(SeatRequest seatRequest);
+      
+       
 }
