@@ -38,7 +38,7 @@ public class TheaterController {
 		TheaterResponse theaterById = this.theaterService.getTheaterByTheaterId(theaterId);
 		System.out.println("theater value"+theaterById.toString());
 		return new ResponseEntity<TheaterResponse>(theaterById, HttpStatus.OK);
-
+	
 	}
 	
 	@GetMapping("/search/nearby")
