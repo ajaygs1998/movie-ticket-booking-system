@@ -36,10 +36,10 @@ public class User {
 	@Column(name = "user_name", nullable = false)
 	private String userName;
 
-	@Column(name = "user_mobile_number", nullable = false, unique = true)
+	@Column(name = "user_mobile_number",nullable = false, unique = true)
 	private String userMobileNumber;
 
-	@Column(name = "user_email_id")
+	@Column(name = "user_email_id", nullable = false, unique = true)
 	private String emailId;
 
 	@Column(name = "user_password")

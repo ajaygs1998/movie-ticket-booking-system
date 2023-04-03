@@ -28,22 +28,28 @@ import jakarta.validation.Valid;
 public class UserController {
 	@Autowired
 	UserService userService;
-
+     
 	@PostMapping("/create/")
-	public ResponseEntity<UserResponse> createUser(
-			@RequestBody UserRequest userRequest) {
+	public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest userRequest) {
 		UserResponse createdUser = this.userService.createUser(userRequest);
 		return new ResponseEntity<UserResponse>(createdUser, HttpStatus.OK);
 	}
-	
-	@PutMapping("/users/{userId}")
+
+	@GetMapping("/find/{userId}")
+	public ResponseEntity<UserResponse> getUserByUserId(@PathVariable Long userId) {
+		UserResponse userById = this.userService.getUserByUserId(userId);
+		return new ResponseEntity<UserResponse>(userById, HttpStatus.OK);
+
+	}
+
+	@PutMapping("/update/{userId}")
 	public ResponseEntity<UserResponse> updateUser(@Valid @PathVariable Long userId,
 			@RequestBody UserRequest userRequest) {
 		UserResponse updatedUser = this.userService.upateUser(userRequest, userId);
 		return new ResponseEntity<UserResponse>(updatedUser, HttpStatus.OK);
 	}
 
-	@GetMapping("/search/users/{keyword}")
+	@GetMapping("/search/keywords/{keyword}")
 	public ResponseEntity<?> getUserByKeyword(@PathVariable String keyword) {
 		List<UserResponse> user = this.userService.getUserByKeyword(keyword);
 		return new ResponseEntity<>(
@@ -51,21 +57,14 @@ public class UserController {
 				HttpStatus.OK);
 	}
 
-	@GetMapping("/users/{userId}")
-	public ResponseEntity<UserResponse> getUserByUserId(@PathVariable Long userId) {
-		UserResponse userById = this.userService.getUserByUserId(userId);
-		return new ResponseEntity<UserResponse>(userById, HttpStatus.OK);
-
-	}
-
-	@GetMapping("/users/")
+	@GetMapping("/find/all")
 	public ResponseEntity<?> getAllUsers() {
 		List<UserResponse> users = this.userService.getAllUsers();
 		return new ResponseEntity<>((!users.isEmpty()) ? users : new ApiResponse("User list is empty ", true),
 				HttpStatus.OK);
 	}
 
-	@DeleteMapping("users/{userId}")
+	@DeleteMapping("/delete/{userId}")
 	public ResponseEntity<ApiResponse> deleteUser(@PathVariable Long userId) {
 		this.userService.deleteUser(userId);
 		return new ResponseEntity<ApiResponse>(new ApiResponse("User Deleted Successfully", true), HttpStatus.OK);
