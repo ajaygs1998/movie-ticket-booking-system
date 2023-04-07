@@ -1,6 +1,8 @@
 package com.movie.entity;
 
+import java.util.Comparator;
 import java.util.Set;
+import java.util.TreeSet;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -10,11 +12,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,7 +26,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
+@EqualsAndHashCode
 public class Theater {
 
 	@Id
@@ -46,16 +47,17 @@ public class Theater {
 
 	@Column(name = "latitude", nullable = false)
 	private double latitude;
-	@Column(name = "longitude", nullable = false)// horizontal lines
+	@Column(name = "longitude", nullable = false) // horizontal lines
 	private double longitude;
-	
-   
- 
+
 	@Column(name = "screen_count", nullable = false)
 	private int screenCount;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "theater", cascade = CascadeType.ALL)
 	private Set<Screen> screen;
+	
+
+
 
 }

@@ -16,6 +16,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,6 +27,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Screen {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,9 +42,10 @@ public class Screen {
 	@OneToMany(mappedBy = "screen", cascade = CascadeType.ALL)
 	private List<ShowDetails> show;
 
+	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "theater_id")
-	private Theater theater;
+    @JoinColumn(name = "theater_id")
+    private Theater theater;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "screen", cascade = CascadeType.ALL)

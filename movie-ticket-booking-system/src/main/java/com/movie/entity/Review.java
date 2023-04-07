@@ -34,13 +34,12 @@ public class Review {
 	private String comment;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-//	Cascade type need to check
+    //	Cascade type need to check
 	@JoinColumn(name = "user_id")
 	private User user;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-//	Cascade type need to check
+    //	Cascade type need to check
 	@JoinColumn(name = "movie_id")
 	private Movie movie;
-
 }

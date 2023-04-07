@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -24,16 +25,18 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Movie {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long movieId;
 
-	@Column(name = "movie_name", nullable = false, unique = true)
+	@Column(name = "movie_name", nullable = false)
 	private String movieName;
 
 	@Column(name = "release_date", nullable = false)
+
 	private LocalDate releaseDate;
 
 	@Column(name = "duration", nullable = false)
