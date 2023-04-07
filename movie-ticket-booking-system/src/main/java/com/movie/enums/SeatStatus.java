@@ -1,6 +1,8 @@
 package com.movie.enums;
 
-public enum SeatStatus {
 
-	AVAILABLE, BOOKED
+public enum SeatStatus {
+    AVAILABLE,
+    RESERVED,
+    OCCUPIED
 }
