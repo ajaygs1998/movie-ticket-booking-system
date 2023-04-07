@@ -45,7 +45,6 @@ public class Booking {
 	private BookingStatus bookingStatus;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-
 	@JoinColumn(name = "user_id")
 	private User user;
 

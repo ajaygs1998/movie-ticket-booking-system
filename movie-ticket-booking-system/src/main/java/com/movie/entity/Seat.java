@@ -14,8 +14,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +25,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Seat {
 
 	@Id
@@ -37,7 +36,7 @@ public class Seat {
 	private String seatNumber;
 
 	@Column(name = "row_name")
-	private Character rowName;
+	private String rowName;
 
 	@Column(name = "status")
 	@Enumerated(EnumType.STRING)
@@ -48,8 +47,6 @@ public class Seat {
 	private SeatType seatType;
 
 	@Column(name = "seat_price", nullable = false)
-	@Positive
-	@NotNull
 	private int seatPrice;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -57,3 +54,4 @@ public class Seat {
 	private Screen screen;
 
 }
+
