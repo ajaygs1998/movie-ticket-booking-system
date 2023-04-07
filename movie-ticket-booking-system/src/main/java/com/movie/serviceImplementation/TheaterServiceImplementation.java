@@ -1,7 +1,9 @@
 package com.movie.serviceImplementation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,15 +33,15 @@ public class TheaterServiceImplementation implements TheaterService {
 	public TheaterResponse createTheater(TheaterRequest theaterRequest) {
 		Theater theater = modelMapper.map(theaterRequest, Theater.class);
 		Theater savedTheater = theaterRepository.save(theater);
+		savedTheater.setScreen(Collections.emptySet());
 		return modelMapper.map(savedTheater, TheaterResponse.class);
 	}
 
 	@Override
 	public List<NearByTheaterResponse> getNearByTheater(Double latitude, Double longitude, Double radius) {
-
 		List<TheaterResponse> theaterResponse = this.theaterRepository.findAll().stream()
 				.map(source -> this.modelMapper.map(source, TheaterResponse.class)).toList();
-		
+
 		List<NearByTheaterResponse> nearByTheaterResponseList = new ArrayList<>();
 		// long startTime = System.nanoTime();
 		for (TheaterResponse resposne : theaterResponse) {
@@ -53,14 +55,12 @@ public class TheaterServiceImplementation implements TheaterService {
 						Double.toString(Math.round(theaterDistanceFromUser * 10.0) / 10.0));
 				dis.append(" km");
 				/*
-				 * String to StringBuilder using append() method 
-				 * ...and StringBuilder to String
+				 * String to StringBuilder using append() method ...and StringBuilder to String
 				 * using toString() method
 				 */
 				nearByTheaterResponse.setDistanceFromUser(dis.toString());
 				nearByTheaterResponse.setTheaterResponse(resposne);
 				nearByTheaterResponseList.add(nearByTheaterResponse);
-				System.out.println("Distances from me (in):" + theaterDistanceFromUser);
 			}
 
 		}
@@ -81,8 +81,9 @@ public class TheaterServiceImplementation implements TheaterService {
 
 	@Override
 	public List<TheaterResponse> getTheaterByKeyword(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.theaterRepository.findByKeyword(keyword).stream()
+				.map(p -> this.modelMapper.map(p, TheaterResponse.class)).collect(Collectors.toList());
+
 	}
 
 	// helper method to calulate the distance
@@ -100,20 +101,31 @@ public class TheaterServiceImplementation implements TheaterService {
 
 	@Override
 	public List<TheaterResponse> getAllTheatres() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.theaterRepository.findAll().stream().map((c) -> this.modelMapper.map(c, TheaterResponse.class))
+				.collect(Collectors.toList());
 	}
 
 	@Override
 	public TheaterResponse upateTheater(TheaterRequest theaterRequest, @Valid Long theaterId) {
-		// TODO Auto-generated method stub
-		return null;
+		Theater theater = this.modelMapper.map(this.getTheaterByTheaterId(theaterId), Theater.class);
+		theater.setCity(theaterRequest.getCity());
+		theater.setLatitude(theaterRequest.getLatitude());
+		theater.setLongitude(theaterRequest.getLongitude());
+		theater.setScreenCount(theaterRequest.getScreenCount());
+		theater.setState(theaterRequest.getState());
+		theater.setStreet(theaterRequest.getStreet());
+		theater.setTheaterName(theaterRequest.getTheaterName());
+		theater.setZip(theaterRequest.getZip());
+		Theater savedTheater = this.theaterRepository.save(theater);
+		return this.modelMapper.map(savedTheater, TheaterResponse.class);
 	}
 
 	@Override
 	public void deleteTheater(Long theaterId) {
-		// TODO Auto-generated method stub
-		
+		Theater theater = this.modelMapper.map(this.getTheaterByTheaterId(theaterId), Theater.class);
+		this.theaterRepository.delete(theater);
 	}
+	
+	
 
 }

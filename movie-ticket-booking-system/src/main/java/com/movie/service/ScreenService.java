@@ -1,31 +1,30 @@
 package com.movie.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.movie.request.ScreenRequest;
 import com.movie.response.ScreenResponse;
 
+import jakarta.validation.Valid;
+
 public interface ScreenService {
 
-	
-	//super-admin
-	List<ScreenResponse> createScreenInTheater(List<ScreenRequest> screenRequest, Long TheaterId);
-  
-	//user/amdin/superaddmin
+	// super-admin
+ScreenResponse createScreenInTheater(@Valid ScreenRequest screenRequest, Long TheaterId);
+
+	// user/amdin/superaddmin
 	List<ScreenResponse> getAllScreensInTheater(Long theterId);
 
-    //admin
-	ScreenResponse updateScreens(ScreenRequest screenRequest, Long theterId, Long screenId);
+	ScreenResponse getScreenByScreenId(Long ScreenId);
 
-
-	//super-admin for testing:
-	List<ScreenResponse> getAllScreensInAllTheaters();
-
-	//superadmin/ admin   
-	void deleteScreenByScreenId(Integer movieId);
-	
-	
-
+	// admin
+	ScreenResponse updateScreen(ScreenRequest screenRequest, Long theterId, Long screenId);
 
 	
+	// superadmin/ admin
+	void deleteScreenByScreenId(Long screenId);
+
+
+
 }

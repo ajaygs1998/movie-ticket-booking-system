@@ -11,7 +11,7 @@ import jakarta.validation.Valid;
 
 public interface MovieService {
 
-	MovieResponse createMovie(@Valid MovieRequest movieResponse);
+	MovieResponse createMovie(@Valid MovieRequest movieRequest);
 
 	MovieResponse upateMovie(MovieRequest movieRequest, @Valid Long movieId);
 
@@ -23,7 +23,7 @@ public interface MovieService {
 
 	void deleteMovie(Long movieId);
 
-;
+
 
 
 }
