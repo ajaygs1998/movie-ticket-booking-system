@@ -28,4 +28,8 @@ public class ScreenRequest {
 	private Theater theater;
 
 	private List<Seat> seat;
+
+	
+		
+	
 }

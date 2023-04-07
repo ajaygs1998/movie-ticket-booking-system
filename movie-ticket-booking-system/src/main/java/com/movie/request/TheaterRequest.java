@@ -34,5 +34,6 @@ public class TheaterRequest {
 	private double longitude; // vertical lines
 	private double latitude; // horizontal lines
 	private Set<ScreenResponse> screen;
+	
 
 }

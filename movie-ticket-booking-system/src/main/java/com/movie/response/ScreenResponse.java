@@ -1,10 +1,10 @@
 package com.movie.response;
 
-import java.time.LocalDate;
 import java.util.List;
 
-import com.movie.entity.Review;
+import com.movie.entity.Seat;
 import com.movie.entity.ShowDetails;
+import com.movie.entity.Theater;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,19 +18,15 @@ import lombok.Setter;
 public class ScreenResponse {
 
 	
-	
-	private Long movieId;
+	private long screenId;
 
-	private String movieName;
+	private String screenName;
 
-	private LocalDate releaseDate;
+	private Long seatsCapacity;
 
-	private Integer duration;
+	private List<ShowDetails> show;
 
-	private String description;
+	private Theater theater;
 
-	private String genre;
-
-	private List<ShowDetails> showDetails;
-	private List<Review> review;
+	private List<Seat> seat;
 }

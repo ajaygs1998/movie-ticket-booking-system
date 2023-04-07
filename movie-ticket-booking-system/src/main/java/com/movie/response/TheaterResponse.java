@@ -2,6 +2,8 @@ package com.movie.response;
 
 import java.util.Set;
 
+import com.movie.entity.Screen;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -24,5 +26,7 @@ public class TheaterResponse {
 
 	private double longitude; // vertical lines
 	private double latitude; // horizontal lines
-	private Set<ScreenResponse> screen;
+	private Set<Screen> screen;
+	
+	
 }
