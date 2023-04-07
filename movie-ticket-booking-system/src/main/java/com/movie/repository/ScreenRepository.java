@@ -11,6 +11,7 @@ import com.movie.entity.Theater;
 @Repository
 public interface ScreenRepository extends JpaRepository<Screen, Long> {
 	
+
 	List<Screen> findByTheater(Theater theater);
 
 }

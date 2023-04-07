@@ -13,4 +13,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	@Query("SELECT p FROM User p WHERE CONCAT(p.userName,' ', p.userMobileNumber,' ',p.emailId) LIKE %?1%")
 	List<User> findByKeyword(String user);
+
+	
+	
 }
