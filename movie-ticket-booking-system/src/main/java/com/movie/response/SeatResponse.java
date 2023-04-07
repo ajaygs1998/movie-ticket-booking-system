@@ -21,7 +21,7 @@ public class SeatResponse {
 	
 	private String seatNumber;
 	
-	private Character rowName;
+	private String rowNumber;
 
 	@Enumerated(EnumType.STRING)
 	private SeatStatus status;
