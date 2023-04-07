@@ -20,23 +20,31 @@ import com.movie.request.UserRequest;
 import com.movie.response.UserResponse;
 import com.movie.service.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/app/user/")
+
 public class UserController {
 	@Autowired
 	UserService userService;
      
 	@PostMapping("/create/")
+	
 	public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest userRequest) {
 		UserResponse createdUser = this.userService.createUser(userRequest);
 		return new ResponseEntity<UserResponse>(createdUser, HttpStatus.OK);
 	}
 
+
+	@Operation(summary = "Get user by ID", 
+	           description = "Retrieve a user's profile by their unique ID")
+	@io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "201", description = "User created successfully")
 	@GetMapping("/find/{userId}")
-	public ResponseEntity<UserResponse> getUserByUserId(@PathVariable Long userId) {
+	public ResponseEntity<UserResponse> getUserByUserId(@Parameter(description = "id of book to be searched") @PathVariable Long userId) {
 		UserResponse userById = this.userService.getUserByUserId(userId);
 		return new ResponseEntity<UserResponse>(userById, HttpStatus.OK);
 

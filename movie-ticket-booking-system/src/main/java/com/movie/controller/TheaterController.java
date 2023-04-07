@@ -36,15 +36,16 @@ public class TheaterController {
 		return new ResponseEntity<TheaterResponse>(theaterResponse, HttpStatus.CREATED);
 	}
 
-	@GetMapping("/theatres/")
+	@GetMapping("/get/all/")
 	public ResponseEntity<?> getAllTheatres() {
 		List<TheaterResponse> allTheatersList = this.theaterService.getAllTheatres();
+	
 		return new ResponseEntity<>(
 				(!allTheatersList.isEmpty()) ? allTheatersList : new ApiResponse("Theater list is empty ", true),
 				HttpStatus.OK);
 	}
 
-	@GetMapping("/search/{theaterId}")
+	@GetMapping("/find/{theaterId}")
 	public ResponseEntity<TheaterResponse> getTheatreByTheaterId(@PathVariable Long theaterId) {
 		TheaterResponse theaterById = this.theaterService.getTheaterByTheaterId(theaterId);
 		System.out.println("theater value" + theaterById.toString());
@@ -61,14 +62,14 @@ public class TheaterController {
 
 	}
 
-	@PutMapping("/update/{theatreId}")
+	@PutMapping("/update/{theaterId}")
 	public ResponseEntity<TheaterResponse> updateTheater(@Valid @PathVariable Long theaterId,
 			@RequestBody TheaterRequest theaterRequest) {
 		TheaterResponse updatedTheater = this.theaterService.upateTheater(theaterRequest, theaterId);
 		return new ResponseEntity<TheaterResponse>(updatedTheater, HttpStatus.OK);
 	}
 
-	@GetMapping("/search/theaters/{keyword}")
+	@GetMapping("/search/keyword/{keyword}")
 	public ResponseEntity<?> getTheaterByKeyword(@PathVariable String keyword) {
 		List<TheaterResponse> serchedtheater = this.theaterService.getTheaterByKeyword(keyword);
 
@@ -76,7 +77,7 @@ public class TheaterController {
 				: new ApiResponse("Theater not found with keyword: " + keyword, true), HttpStatus.OK);
 	}
 
-	@DeleteMapping("theatres/{theatreId}")
+	@DeleteMapping("delete/{theaterId}")
 	public ResponseEntity<ApiResponse> deleteTheater(@PathVariable Long theaterId) {
 		this.theaterService.deleteTheater(theaterId);
 		return new ResponseEntity<ApiResponse>(new ApiResponse("Theater Deleted Successfully", true), HttpStatus.OK);

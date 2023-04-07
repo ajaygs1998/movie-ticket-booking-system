@@ -26,33 +26,27 @@ public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
 
-	@PostMapping("/user/{emailId}/movie/{movieId}")
-
+	@PostMapping("/user/{userId}/movie/{movieId}")
 	public ResponseEntity<ReviewResponse> doRatingForMovie(@Valid @RequestBody ReviewRequest reviewRequest,
-			@PathVariable String emailId, @PathVariable Long movieId) {
-		ReviewResponse createReview = this.reviewService.createReview(reviewRequest, emailId, movieId);
+			@PathVariable Long userId, @PathVariable Long movieId) {
+		ReviewResponse createReview = this.reviewService.createReview(reviewRequest, userId, movieId);
 		return new ResponseEntity<ReviewResponse>(createReview, HttpStatus.CREATED);
 	}
 
-	@DeleteMapping("/delete/{reviewId}")
-	public ResponseEntity<ApiResponse> deleteMyReviews(@PathVariable Long reviewId) {
-		this.reviewService.deleteMyReviews(reviewId);
-		return new ResponseEntity<ApiResponse>(new ApiResponse("Review Deleted Successfully", true), HttpStatus.OK);
-	}
 
-	@GetMapping("/get/{reviewId}")
+	@GetMapping("/{reviewId}")
 	public ResponseEntity<ReviewResponse> getReviewByReviewId(@PathVariable Long reviewId) {
 		ReviewResponse reviewById = this.reviewService.getReviewByReviewId(reviewId);
 		return new ResponseEntity<ReviewResponse>(reviewById, HttpStatus.OK);
 	}
-
-	@GetMapping("/movies/{movieId}")
+	
+	@GetMapping("/movie/{movieId}")
 	public ResponseEntity<List<ReviewResponse>> getReviewsByMoviewId(@PathVariable Long movieId) {
-		List<ReviewResponse> movieReviews = this.reviewService.getReviewsByMoviewId(movieId);
+		List<ReviewResponse> movieReviews = this.reviewService.getReviewsByMovieId(movieId);
 		return new ResponseEntity<List<ReviewResponse>>(movieReviews, HttpStatus.OK);
 	}
 
-	@GetMapping("/get/list/")
+	@GetMapping("/list/")
 	public ResponseEntity<?> getAllReviews() {
 		List<ReviewResponse> reviews = this.reviewService.getAllReviews();
 		return new ResponseEntity<>((!reviews.isEmpty()) ? reviews : new ApiResponse("Review list is empty ", true),

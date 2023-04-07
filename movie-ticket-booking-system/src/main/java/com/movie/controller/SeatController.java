@@ -22,7 +22,15 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/app/seat/")
 public class SeatController {
-	
+	/*
+	 * 
+	 * 
+	 *     GET /screens/{id}/seats: Returns a list of seats for a specific screen by ID
+    POST /screens/{id}/seats: Creates a new seat for a specific screen by ID
+    PUT /screens/{id}/seats/{seatId}: Updates a specific seat for a specific screen by ID
+    DELETE /screens/{id}/seats/{seatId}: Deletes a specific seat for a specific screen by ID
+
+	 */
 	@Autowired
 	SeatService seatService;
 	

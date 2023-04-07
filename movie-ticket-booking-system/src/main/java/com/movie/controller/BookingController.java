@@ -19,10 +19,12 @@ import com.movie.request.BookingRequest;
 import com.movie.response.BookingResponse;
 import com.movie.service.BookingService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/app/booking/")
+@Tag(name = "users", description = "Operations related to users")
 public class BookingController {
 	@Autowired
 	BookingService bookingService;
